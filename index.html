@@ -1,12 +1,138 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Robert Sargent</h1>
-</body>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Crystal-Collector</title>
+  </head>
+  <body>
+    <div class = "container">
+        <div class = "jumbotron mb-2">
+            <p class="display-3 text-center">Crystals Collector</p>
+            <p>You will be given a random number at the start of the game.</p>
+            <p>There are four crystals below.  By clicking on a crystal you will add a specific amount of points to your total score.</p>            
+            <hp>You win by matching your total score to the random number.  You lose if your total score goes above the random number.</p>            
+            <hp>The value of each crystal is unknown until you click on it.</p>            
+            <p>Eash round designates new numbers for each crystal.</p>
+        </div>
+
+        <div class = "row">
+            <div class = "col-md-6">
+                <div class = "card mb-2">
+                    <h3 class = "card-header">Random Number</h3>
+                    <div class = "card-body">
+                        <div class = "randomNum"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class = "col-md-6">
+                <div class = "card mb-2">
+                    <h3 class = "card-header">Gem Score</h3>
+                    <div class = "card-body">
+                        <div class = "gemscore"></div>    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class = "row">
+            <div class = "col-md-3 gems">
+                <button id = "button-1" value = "ruby"><img src = "assets/images/ruby.jpg" class = "img-fluid" alt = "ruby"></button>
+            </div>
+            <div class = "col-md-3 gems">
+                <button id = "button-2" value = "diamond"><img src = "assets/images/diamond.jpg" class = "img-fluid" alt = "diamond"></button>
+            </div>
+            <div class = "col-md-3 gems">
+                <button id = "button-3" value = "topaz"><img src = "assets/images/topaz.jpg" class = "img-fluid" alt = "topaz"></button>
+            </div>
+            <div class = "col-md-3 gems">
+                <button id = "button-4" value = "emerald"><img src = "assets/images/emerald.jpg" class = "img-fluid" alt = "emerald"></button>
+            </div>
+        </div>
+        <br>
+        <div class = "row">            
+            <div class = "col-md-3">
+                <div class = "card">
+                    <h3 class = "card-header">Scoreboard</h3>
+                    <div class = "wins">Wins: </div>
+                    <div class = "losses">Losses: </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script type = "text/javascript">
+
+        var random, score, gem1, gem2, gem3, gem4;
+        var wins = 0;
+        var losses = 0;
+
+        function reset(){
+            random =  19 + Math.floor(Math.random() * 102);
+            gem1 = 1 + Math.floor(Math.random() * 12);
+            gem2 = 1 + Math.floor(Math.random() * 12);
+            gem3 = 1 + Math.floor(Math.random() * 12);
+            gem4 = 1 + Math.floor(Math.random() * 12);
+            score = 0;
+            $('.randomNum').text(random)
+            $('.gemscore').text(score)
+        }
+        
+        reset ();
+
+        $('.gems').on('click', "button", function() {
+            var input = $(this).attr('value');
+            console.log("The gem you clicked was " + input);
+
+            switch ($(this).attr('value')) {
+                case "ruby":
+                    score += gem1;
+                    $('.gemscore').text(score)
+                    break;
+                case "diamond":
+                    score += gem2;
+                    $('.gemscore').text(score)
+                    break;
+                case "topaz":
+                    score += gem3;
+                    $('.gemscore').text(score)
+                    break;
+                case "emerald":
+                    score += gem4;
+                    $('.gemscore').text(score)
+                    break;
+                default:
+                    break;
+            }
+
+            if (score === random) {
+                alert("You win, congratulations!")
+                wins++
+                console.log(wins)
+                $('.wins').text("Wins: " + wins)
+                reset();
+            }
+            if (score > random) {
+                alert("You lost, better luck next round!")
+                losses++
+                console.log(losses)
+                $('.losses').text("Losses: " + losses)
+                reset();
+            }
+            
+        })
+        
+
+    </script>
+
+    
+  </body>
 </html>
