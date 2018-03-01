@@ -18,8 +18,8 @@
             <p class="display-3 text-center">Crystals Collector</p>
             <p>You will be given a random number at the start of the game.</p>
             <p>There are four crystals below.  By clicking on a crystal you will add a specific amount of points to your total score.</p>            
-            <hp>You win by matching your total score to the random number.  You lose if your total score goes above the random number.</p>            
-            <hp>The value of each crystal is unknown until you click on it.</p>            
+            <p>You win by matching your total score to the random number.  You lose if your total score goes above the random number.</p>            
+            <p>The value of each crystal is unknown until you click on it.</p>            
             <p>Eash round designates new numbers for each crystal.</p>
         </div>
 
@@ -61,78 +61,14 @@
         <div class = "row">            
             <div class = "col-md-3">
                 <div class = "card">
-                    <h3 class = "card-header">Scoreboard</h3>
-                    <div class = "wins">Wins: </div>
-                    <div class = "losses">Losses: </div>
+                    <h3 class = "card-header score-board">Scoreboard</h3>
+                    <div class = "wins score-board">Wins: </div>
+                    <div class = "losses score-board">Losses: </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <script type = "text/javascript">
 
-        var random, score, gem1, gem2, gem3, gem4;
-        var wins = 0;
-        var losses = 0;
-
-        function reset(){
-            random =  19 + Math.floor(Math.random() * 102);
-            gem1 = 1 + Math.floor(Math.random() * 12);
-            gem2 = 1 + Math.floor(Math.random() * 12);
-            gem3 = 1 + Math.floor(Math.random() * 12);
-            gem4 = 1 + Math.floor(Math.random() * 12);
-            score = 0;
-            $('.randomNum').text(random)
-            $('.gemscore').text(score)
-        }
-        
-        reset ();
-
-        $('.gems').on('click', "button", function() {
-            var input = $(this).attr('value');
-            console.log("The gem you clicked was " + input);
-
-            switch ($(this).attr('value')) {
-                case "ruby":
-                    score += gem1;
-                    $('.gemscore').text(score)
-                    break;
-                case "diamond":
-                    score += gem2;
-                    $('.gemscore').text(score)
-                    break;
-                case "topaz":
-                    score += gem3;
-                    $('.gemscore').text(score)
-                    break;
-                case "emerald":
-                    score += gem4;
-                    $('.gemscore').text(score)
-                    break;
-                default:
-                    break;
-            }
-
-            if (score === random) {
-                alert("You win, congratulations!")
-                wins++
-                console.log(wins)
-                $('.wins').text("Wins: " + wins)
-                reset();
-            }
-            if (score > random) {
-                alert("You lost, better luck next round!")
-                losses++
-                console.log(losses)
-                $('.losses').text("Losses: " + losses)
-                reset();
-            }
-            
-        })
-        
-
-    </script>
-
-    
+    <script src="assets/javascript/game.js"></script>    
   </body>
 </html>

@@ -1,0 +1,9 @@
+body {
+    background-image: url("../../assets/images/geode.jpg");
+}
+.jumbotron {
+    background-color: rgb(204, 173, 108);
+}
+.score-board {
+    background-color: rgb(192, 181, 233);
+}
